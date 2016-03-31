@@ -1,15 +1,14 @@
 class CommentsController < ApplicationController
   def create
-    
     @article = Article.find params[:article_id]
     @comment = @article.comments.build comment_params
+    
     if @comment.save
         redirect_to article_path(@article)
     else
         @comments = @article.comments.all
         render 'articles/show'
     end
-    
   end
   
   def destroy
